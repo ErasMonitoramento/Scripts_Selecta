@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/env python3
 
 # Desenvolvido por: Bee Solutions
 # Autor: Fernando Almondes
