@@ -1,11 +1,11 @@
-#!/bin/python3
+#!/usr/bin/env python3
 
-#Desenvolvido por: Bee Solutions em parceria com o ChatGPT #
-#Author: Fernando Almondes #
-#Nome: beebot.py
-#Data: 27/06/2023 3h30m #
+# Desenvolvido por: Bee Solutions em parceria com o ChatGPT #
+# Author: Fernando Almondes #
+# Nome: beebot.py
+# Data: 27/06/2023 3h30m #
 
-#### INICIO DAS INTRUCOES ####
+#### INICIO DAS INSTRUCOES ####
 
 # Testado no Debian 11 e Ubuntu Server 20.04 ou 22.04
 # Crie o diretorio padrao: mkdir /var/tmp/zabbix
