@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ "$#" -ne 3 ]; then
+    echo "Uso: $0 <ip> <comunidade> <porta>"
+    exit 1
+fi
+
+ip=$1
+comunidade=$2
+porta=$3
+
+/opt/asnname/venv/bin/python3 /opt/asnname/asnamev4.py "$ip" "$comunidade" "$porta"
