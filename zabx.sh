@@ -10,6 +10,8 @@ destination_dir="/usr/lib/zabbix/externalscripts"
 
 # Lista de arquivos que devem receber permissão de execução
 files_with_permissions=(
+    "asname"
+    "run_asnamev6"
     "discovery_hw_interfaces_opticas_debian11.py"
     "executa_pppoe_total"
     "mkcontador"
