@@ -17,7 +17,6 @@ files_with_permissions=(
     "mkcontador"
     "mkdiscovery"
     "ppoe.sh"
-    "run_asnnamev6"
     "run_asnname"
     "run_oid_snmp"
     "run_signal"
