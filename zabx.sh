@@ -5,7 +5,7 @@ repo_url="https://github.com/ErasMonitoramento/Scripts_Selecta.git"
 
 # Diretórios de trabalho e destino
 clone_dir="/tmp/implantacao_zabbix/Scripts_Selecta"
-source_dir="script_pasta_externo"
+source_dir="script_pasta extenal"  # Nome corrigido
 destination_dir="/usr/lib/zabbix/externalscripts"
 
 # Lista de arquivos que devem receber permissão de execução
