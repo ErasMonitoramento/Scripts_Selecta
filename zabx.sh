@@ -5,8 +5,23 @@ repo_url="https://github.com/ErasMonitoramento/Scripts_Selecta.git"
 
 # Diretórios de trabalho e destino
 clone_dir="/tmp/implantacao_zabbix/Scripts_Selecta"
-source_subdir="script_pasta_externo/vlans_huawei"
+source_dir="script_pasta_externo"
 destination_dir="/usr/lib/zabbix/externalscripts"
+
+# Lista de arquivos que devem receber permissão de execução
+files_with_permissions=(
+    "bgp_huawei_eras.py"
+    "discovery_hw_interfaces_opticas_debian11.py"
+    "executa_pppoe_total"
+    "mkcontador"
+    "mkdiscovery"
+    "ppoe.sh"
+    "run_asnname"
+    "run_oid_snmp"
+    "run_signal"
+    "status_asn"
+    "zbx_mtr.sh"
+)
 
 # Função para verificar e instalar o Git
 ensure_git_installed() {
@@ -30,16 +45,24 @@ git_clone() {
     git clone "$repo_url" "$clone_dir"
 }
 
-# Função para mover a pasta vlans_huawei para o destino
-move_subfolder() {
-    src_path="$clone_dir/$source_subdir"
+# Função para mover os arquivos e ajustar permissões
+move_files_and_set_permissions() {
+    src_path="$clone_dir/$source_dir"
     if [ -d "$src_path" ]; then
-        echo "Movendo a pasta $source_subdir para $destination_dir..."
-        mv "$src_path" "$destination_dir/"
-        echo "Ajustando permissões da pasta e arquivos em $destination_dir/vlans_huawei..."
-        chmod -R +x "$destination_dir/vlans_huawei"
+        echo "Movendo todos os arquivos e pastas de $src_path para $destination_dir..."
+        cp -r "$src_path/"* "$destination_dir/"
+
+        echo "Ajustando permissões para arquivos específicos..."
+        for file in "${files_with_permissions[@]}"; do
+            if [ -f "$destination_dir/$file" ]; then
+                chmod +x "$destination_dir/$file"
+                echo "Permissões ajustadas para $destination_dir/$file"
+            else
+                echo "Arquivo $file não encontrado em $destination_dir"
+            fi
+        done
     else
-        echo "Subpasta $source_subdir não encontrada no repositório clonado."
+        echo "Pasta $source_dir não encontrada no repositório clonado."
     fi
 }
 
@@ -51,8 +74,8 @@ main() {
     # Clonar o repositório
     git_clone
 
-    # Mover a pasta para o destino
-    move_subfolder
+    # Mover arquivos e ajustar permissões
+    move_files_and_set_permissions
 
     echo "Configuração concluída com sucesso."
 }
