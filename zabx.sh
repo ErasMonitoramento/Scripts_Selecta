@@ -5,22 +5,21 @@ repo_url="https://github.com/ErasMonitoramento/Scripts_Selecta.git"
 
 # Diretórios de trabalho e destino
 clone_dir="/tmp/implantacao_zabbix/Scripts_Selecta"
-source_dir="script_pasta extenal"  # Nome corrigido
+source_dir="script_pasta_extenal"  # Nome corrigido
 destination_dir="/usr/lib/zabbix/externalscripts"
 
 # Lista de arquivos que devem receber permissão de execução
 files_with_permissions=(
-    "bgp_huawei_eras.py"
     "discovery_hw_interfaces_opticas_debian11.py"
     "executa_pppoe_total"
     "mkcontador"
     "mkdiscovery"
     "ppoe.sh"
+    "run_asnnamev6"
     "run_asnname"
     "run_oid_snmp"
     "run_signal"
     "status_asn"
-    "zbx_mtr.sh"
 )
 
 # Função para verificar e instalar o Git
