@@ -8,6 +8,16 @@ clone_dir="/tmp/implantacao_zabbix/Scripts_Selecta"
 source_dir="Imagens Grafana/logos"  # Caminho para a pasta logos
 destination_dir="/usr/share/grafana/public/img/logos"
 
+# Lista de plugins do Grafana para instalar
+grafana_plugins=(
+    "alexanderzobnin-zabbix-app"
+    "marcusolsson-dynamictext-panel"
+    "grafana-clock-panel"
+    "volkovlabs-echarts-panel"
+    "volkovlabs-variable-panel"
+    "gapit-htmlgraphics-panel"
+)
+
 # Função para verificar e instalar o Git
 ensure_git_installed() {
     echo "Verificando se o Git está instalado..."
@@ -18,6 +28,32 @@ ensure_git_installed() {
     else
         echo "Git já está instalado."
     fi
+}
+
+# Função para verificar e instalar o grafana-cli
+ensure_grafana_cli_installed() {
+    echo "Verificando se o grafana-cli está instalado..."
+    if ! command -v grafana-cli &>/dev/null; then
+        echo "grafana-cli não encontrado. Certifique-se de que o Grafana está instalado corretamente."
+        exit 1
+    else
+        echo "grafana-cli encontrado."
+    fi
+}
+
+# Função para instalar os plugins do Grafana
+install_grafana_plugins() {
+    ensure_grafana_cli_installed
+    echo "Instalando plugins do Grafana..."
+    for plugin in "${grafana_plugins[@]}"; do
+        echo "Instalando plugin: $plugin"
+        sudo grafana-cli plugins install "$plugin"
+        if [ $? -ne 0 ]; then
+            echo "Erro ao instalar o plugin: $plugin. Verifique o grafana-cli."
+        fi
+    done
+    echo "Reiniciando o serviço do Grafana para aplicar as alterações..."
+    sudo systemctl restart grafana-server
 }
 
 # Função para clonar o repositório
@@ -57,6 +93,9 @@ main() {
 
     # Atualizar ou copiar a pasta logos para o destino
     update_logos
+
+    # Instalar plugins do Grafana
+    install_grafana_plugins
 
     echo "Configuração concluída com sucesso."
 }
