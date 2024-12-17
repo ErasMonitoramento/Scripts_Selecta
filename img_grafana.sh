@@ -16,6 +16,9 @@ grafana_plugins=(
     "volkovlabs-echarts-panel"
     "volkovlabs-variable-panel"
     "gapit-htmlgraphics-panel"
+    "heywesty-trafficlight-panel"
+    "mesak-imagesave-panel"
+    "orchestracities-map-panel"
 )
 
 # Função para verificar e instalar o Git
