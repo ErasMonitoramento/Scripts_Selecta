@@ -10,7 +10,6 @@ destination_dir="/usr/share/grafana/public/img/logos"
 
 # Lista de plugins do Grafana para instalar
 grafana_plugins=(
-    "alexanderzobnin-zabbix-app"
     "marcusolsson-dynamictext-panel"
     "grafana-clock-panel"
     "volkovlabs-echarts-panel"
